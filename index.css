@@ -1,0 +1,29 @@
+canvas {
+  border: solid 1px hsla(0, 0%, 0%, 0.15);
+  border-radius: 0.5rem;
+  margin: auto;
+  scale: 100%;
+}
+
+#controls {
+  display: flex;
+}
+
+#stage-container {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+html,
+body {
+  height: 98%;
+  width: 98%;
+}
+
+* {
+  box-sizing: border-box;
+}

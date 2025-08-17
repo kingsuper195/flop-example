@@ -1,0 +1,16 @@
+{
+  "name": "flop-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "http-server"
+  },
+  "author": "kingsuper195",
+  "license": "MIT",
+  "description": "",
+  "dependencies": {
+    "flop-render": "file:../flop-render",
+    "flop-vm": "file:../flop-vm",
+    "http-server": "^14.1.1"
+  }
+}
