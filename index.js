@@ -1,12 +1,11 @@
-import { getMousePos } from "./node_modules/flop-render/getMousePosition.js";
 import "./node_modules/flop-render/scratch-render.js";
 import { RenderLoop } from "./node_modules/flop-render/index.js";
-const getMousePosition = getMousePos;
 const canvas = document.getElementById('stage');
-const renderer = new ScratchRender(canvas);
 let flop = new Flop();
+const renderLoop = new RenderLoop(canvas);
+const renderer = renderLoop.renderer;
 renderer.setLayerGroupOrdering(['group']);
-const renderLoop = new RenderLoop(renderer);
+
 flop.setRenderLoop(renderLoop);
 flop.looks.setBackdrop("./backdrop1.png", "bitmap");
 
