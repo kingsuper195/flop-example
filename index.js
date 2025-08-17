@@ -12,7 +12,7 @@ flop.looks.setBackdrop("./backdrop1.png", "bitmap");
 
 let sprite1 = new Sprite();
 sprite1.render = renderer.createDrawable('group');
-renderLoop.addSprite(sprite1);
+renderLoop.addSprite(sprite1, "Kitty");
 sprite1.costumes[0] = {
     "data": "./costume1.svg",
     "type": "vector",
@@ -32,7 +32,7 @@ sprite2.costumes[0] = {
     "type": "bitmap",
     "name": "Bg2"
 };
-renderLoop.addSprite(sprite2);
+renderLoop.addSprite(sprite2, "Backtop");
 const START_PIXELATION = 1000;
 const START_BRIGHTNESS = 100;
 sprite1.pixalate = START_PIXELATION;
@@ -52,11 +52,11 @@ async function run() {
         await deploy(sprite1, false);
     }
     sprite1.looks.setCostume(1);
-    await deploy(sprite1,true);
+    await deploy(sprite1, true);
     // Promise.all(promises);
 
     setTimeout(async () => {
-        sprite2.looks.hide();
+        renderLoop.deleteSprite("Backtop");
         sprite1.looks.hide();
         flop.looks.setBackdrop("./FLOP-JS.svg", "vector");
 
