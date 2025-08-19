@@ -47,7 +47,9 @@ async function run() {
 
 
     sprite2.motion.gotoXY(-147, 64);
+
     for (let i = 0; i < 7; i++) {
+
         await deploy(sprite1, false);
     }
     sprite1.looks.setCostume(1);
@@ -68,8 +70,10 @@ async function deploy(sprite, final) {
     if (!final) {
         flop.sound.playSound(-80, 100, 100, "Meow.wav");
     }
+    await sprite.motion.gotoXY(-200, 25);
+    console.log(await sprite.sensing.touching(sprite2));
 
-    sprite.motion.gotoXY(-200, 25);
+
     const startX = -200;
 
     const endX = -30;
@@ -83,13 +87,15 @@ async function deploy(sprite, final) {
     }
     const START2_PIXELATION = sprite.pixalate;
     const START2_BRIGHTNESS = sprite.brightness;
+
+
     for (let step = 1; sprite.motion.getX() < 100; step++) {
         await sprite.motion.changeX(5);
         sprite.motion.changeY((-24 - sprite.motion.getY()) / 20);
         sprite.looks.setEffect('pixalate', START2_PIXELATION - (START2_PIXELATION / (100 - endX)) * step * 5);
         sprite.looks.setEffect('brightness', START2_BRIGHTNESS - (START2_BRIGHTNESS / (100 - endX)) * step * 5);
     }
-
+    await flop.control.waitSeconds(1);
     if (!final) {
         for (let step = sprite.motion.getX(); step < 300; step += 5) {
             await sprite.motion.setX(step);
