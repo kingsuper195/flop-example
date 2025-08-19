@@ -71,8 +71,6 @@ async function deploy(sprite, final) {
         flop.sound.playSound(-80, 100, 100, "Meow.wav");
     }
     await sprite.motion.gotoXY(-200, 25);
-    console.log(await sprite.sensing.touching(sprite2));
-
 
     const startX = -200;
 
