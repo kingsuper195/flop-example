@@ -1,4 +1,3 @@
-import "./node_modules/flop-render/scratch-render.js";
 import { RenderLoop } from "./node_modules/flop-render/index.js";
 const canvas = document.getElementById('stage');
 let flop = new Flop();
