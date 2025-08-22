@@ -1,4 +1,5 @@
 import { RenderLoop } from "./node_modules/flop-render/index.js";
+import { Sprite, Flop } from "./node_modules/flop-vm/index.js";
 const canvas = document.getElementById('stage');
 let flop = new Flop();
 const renderLoop = new RenderLoop(canvas);
