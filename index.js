@@ -2,14 +2,11 @@ import { RenderLoop } from "./node_modules/flop-render/index.js";
 const canvas = document.getElementById('stage');
 let flop = new Flop();
 const renderLoop = new RenderLoop(canvas);
-const renderer = renderLoop.renderer;
-renderer.setLayerGroupOrdering(['group']);
 
 flop.setRenderLoop(renderLoop);
 flop.looks.setBackdrop("./backdrop1.png", "bitmap");
 
 let sprite1 = new Sprite();
-sprite1.render = renderer.createDrawable('group');
 renderLoop.addSprite(sprite1, "Kitty");
 sprite1.costumes[0] = {
     "data": "./costume1.svg",
@@ -24,7 +21,6 @@ sprite1.costumes[1] = {
 
 
 let sprite2 = new Sprite();
-sprite2.render = renderer.createDrawable('group');
 sprite2.costumes[0] = {
     "data": "./backdrop2.png",
     "type": "bitmap",
