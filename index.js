@@ -89,7 +89,8 @@ async function deploy(sprite, final) {
         sprite.looks.setEffect('pixalate', START2_PIXELATION - (START2_PIXELATION / (100 - endX)) * step * 5);
         sprite.looks.setEffect('brightness', START2_BRIGHTNESS - (START2_BRIGHTNESS / (100 - endX)) * step * 5);
     }
-    await flop.control.waitSeconds(1);
+    await flop.sensing.resetTimer();
+    await flop.control.waitUntil(() => flop.sensing.timer()>1);
     if (!final) {
         for (let step = sprite.motion.getX(); step < 300; step += 5) {
             await sprite.motion.setX(step);
