@@ -9,8 +9,7 @@
   "license": "MIT",
   "description": "",
   "dependencies": {
-    "flop-render": "file:../flop-render",
-    "flop-vm": "file:../flop-vm",
-    "http-server": "^14.1.1"
+    "flop-render": "github:kingsuper195/flop-render",
+    "flop-vm": "github:kingsuper195/flop-vm"
   }
 }
