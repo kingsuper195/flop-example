@@ -1,4 +1,4 @@
-import { RenderLoop } from "./node_modules/flop-render/index.js";
+import { RenderLoop } from "./node_modules/flop-render/dist/flop-render.js";
 import { Sprite, Flop } from "./node_modules/flop-vm/index.js";
 const canvas = document.getElementById('stage');
 let flop = new Flop();
@@ -90,7 +90,7 @@ async function deploy(sprite, final) {
         sprite.looks.setEffect('brightness', START2_BRIGHTNESS - (START2_BRIGHTNESS / (100 - endX)) * step * 5);
     }
     await flop.sensing.resetTimer();
-    await flop.control.waitUntil(() => flop.sensing.timer()>1);
+    await flop.control.waitUntil(() => flop.sensing.timer() > 1);
     if (!final) {
         for (let step = sprite.motion.getX(); step < 300; step += 5) {
             await sprite.motion.setX(step);
