@@ -1,5 +1,5 @@
-import { RenderLoop } from "./node_modules/flop-render/dist/flop-render.js";
-import { Sprite, Flop } from "./node_modules/flop-vm/index.js";
+import { RenderLoop } from "../flop-render/dist/flop-render.js";
+import { Sprite, Flop } from "../flop-vm/index.js";
 const canvas = document.getElementById('stage');
 let flop = new Flop();
 const renderLoop = new RenderLoop(canvas);
@@ -8,7 +8,7 @@ flop.setRenderLoop(renderLoop);
 flop.looks.setBackdrop("./backdrop1.png", "bitmap");
 
 let sprite1 = new Sprite();
-renderLoop.addSprite(sprite1, "Kitty");
+renderLoop.addSprite(sprite1);
 sprite1.costumes[0] = {
     "data": "./costume1.svg",
     "type": "vector",
@@ -27,7 +27,7 @@ sprite2.costumes[0] = {
     "type": "bitmap",
     "name": "Bg2"
 };
-renderLoop.addSprite(sprite2, "Backtop");
+renderLoop.addSprite(sprite2);
 const START_PIXELATION = 1000;
 const START_BRIGHTNESS = 100;
 sprite1.pixalate = START_PIXELATION;
@@ -44,7 +44,7 @@ async function run() {
 
     sprite2.motion.gotoXY(-147, 64);
 
-    for (let i = 0; i < 7; i++) {
+    for (let i = 0; i < 2; i++) {
 
         await deploy(sprite1, false);
     }
@@ -53,7 +53,7 @@ async function run() {
     // Promise.all(promises);
 
     setTimeout(async () => {
-        renderLoop.deleteSprite("Backtop");
+        renderLoop.deleteSprite(sprite2);
         sprite1.looks.hide();
         flop.looks.setBackdrop("./FLOP-JS.svg", "vector");
 
