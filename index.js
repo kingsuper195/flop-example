@@ -5,7 +5,7 @@ let flop = new Flop();
 const renderLoop = new RenderLoop(canvas);
 
 flop.setRenderLoop(renderLoop);
-flop.looks.setBackdrop("./backdrop1.png", "bitmap");
+flop.setBackdrop("./backdrop1.png", "bitmap");
 
 let sprite1 = new Sprite();
 renderLoop.addSprite(sprite1);
@@ -37,25 +37,25 @@ async function run() {
     document.getElementById("start").remove();
 
 
-    sprite1.looks.setCostume(0);
+    sprite1.setCostume(0);
 
-    sprite2.looks.setCostume(0);
+    sprite2.setCostume(0);
 
 
-    sprite2.motion.gotoXY(-147, 64);
+    sprite2.gotoXY(-147, 64);
 
     for (let i = 0; i < 2; i++) {
 
         await deploy(sprite1, false);
     }
-    sprite1.looks.setCostume(1);
+    sprite1.setCostume(1);
     await deploy(sprite1, true);
     // Promise.all(promises);
 
     setTimeout(async () => {
         renderLoop.deleteSprite(sprite2);
-        sprite1.looks.hide();
-        flop.looks.setBackdrop("./FLOP-JS.svg", "vector");
+        sprite1.hide();
+        flop.setBackdrop("./FLOP-JS.svg", "vector");
 
     }, 1000);
 
@@ -64,36 +64,36 @@ async function run() {
 
 async function deploy(sprite, final) {
     if (!final) {
-        flop.sound.playSound(-80, 100, 100, "Meow.wav");
+        flop.playSound(-80, 100, 100, "Meow.wav");
     }
-    await sprite.motion.gotoXY(-200, 25);
+    await sprite.gotoXY(-200, 25);
 
     const startX = -200;
 
     const endX = -30;
 
-    for (let step = 1; sprite.motion.getX() < endX; step++) {
-        await sprite.motion.changeX(5);
+    for (let step = 1; sprite.getX() < endX; step++) {
+        await sprite.changeX(5);
 
-        sprite.looks.setEffect('pixalate', START_PIXELATION - (START_PIXELATION / (100 - startX)) * step * 5);
-        sprite.looks.setEffect('brightness', START_BRIGHTNESS - (START_BRIGHTNESS / (100 - startX)) * step * 5);
+        sprite.setEffect('pixalate', START_PIXELATION - (START_PIXELATION / (100 - startX)) * step * 5);
+        sprite.setEffect('brightness', START_BRIGHTNESS - (START_BRIGHTNESS / (100 - startX)) * step * 5);
 
     }
     const START2_PIXELATION = sprite.pixalate;
     const START2_BRIGHTNESS = sprite.brightness;
 
 
-    for (let step = 1; sprite.motion.getX() < 100; step++) {
-        await sprite.motion.changeX(5);
-        sprite.motion.changeY((-24 - sprite.motion.getY()) / 20);
-        sprite.looks.setEffect('pixalate', START2_PIXELATION - (START2_PIXELATION / (100 - endX)) * step * 5);
-        sprite.looks.setEffect('brightness', START2_BRIGHTNESS - (START2_BRIGHTNESS / (100 - endX)) * step * 5);
+    for (let step = 1; sprite.getX() < 100; step++) {
+        await sprite.changeX(5);
+        sprite.changeY((-24 - sprite.getY()) / 20);
+        sprite.setEffect('pixalate', START2_PIXELATION - (START2_PIXELATION / (100 - endX)) * step * 5);
+        sprite.setEffect('brightness', START2_BRIGHTNESS - (START2_BRIGHTNESS / (100 - endX)) * step * 5);
     }
-    await flop.sensing.resetTimer();
-    await flop.control.waitUntil(() => flop.sensing.timer() > 1);
+    await flop.resetTimer();
+    await flop.waitUntil(() => flop.timer() > 1);
     if (!final) {
-        for (let step = sprite.motion.getX(); step < 300; step += 5) {
-            await sprite.motion.setX(step);
+        for (let step = sprite.getX(); step < 300; step += 5) {
+            await sprite.setX(step);
         }
     }
 }
